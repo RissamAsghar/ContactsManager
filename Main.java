@@ -1,17 +1,19 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    
+    static ArrayList<Contact> thing = new ArrayList<Contact>(); 
+
     static Scanner input = new Scanner(System.in);
     private static ContactsManager myContactsManager = new ContactsManager();
     private static int options;
 
-    public static int start(){
+    public static int startMenu(){
 
         System.out.println("*****Welcome to Contacts Manager*****");
 		System.out.println("*. Press 1 to create contact");
-		System.out.println("*. Press 2 to search contact");
+		System.out.println("*. Press 2 to search contacts");
         System.out.println("*. Press 3 to exit");
 
         int options = input.nextInt();
@@ -29,10 +31,24 @@ public class Main {
     }
 
     public static void searchContact(){
-                System.out.println("Search Contact: ");
+        System.out.println("Available Contacts: ");
+                for(int i = 0; i < thing.size(); i++){
+                    System.out.println("* "+ thing.get(i).getName());
+                }
+                System.out.println("Search Contact Info: ");
                 String searchName = input.next();
                 Contact result = myContactsManager.searchContact(searchName);
-                System.out.println("The phone number is: " +result.getPhonenumber());
+
+                System.out.println("*****Contact Info*****");
+                System.out.println("");
+                System.out.println("Name: " +result.getName());
+                System.out.println("Phone Number: " +result.getPhonenumber());
+                System.out.println("");
+                System.out.println("**********************");
+
+                System.out.println("Type any word to open menu:");
+                String openMenu = input.next();
+
 
     }
 
@@ -40,6 +56,7 @@ public class Main {
                 System.out.println("Enter the name of the contact: ");
                 String name = input.next();
                 Contact Rissam = new Contact();
+                thing.add(Rissam);
                 Rissam.setName(name);
 
 
@@ -50,6 +67,9 @@ public class Main {
                 myContactsManager.addContact(Rissam);
                 System.out.println("Contact added successfully!!");
 
+                System.out.println("Type any word to open menu:");
+                String openMenu = input.next();
+
     }
 
     public static void main(String [] args){
@@ -57,7 +77,7 @@ public class Main {
 
 
         do{
-            options = start();
+            options = startMenu();
            
         switch(options){
             case 1:
