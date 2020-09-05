@@ -12,6 +12,10 @@ public class ContactsManager {
         friendsCount++;
     }
 
+    public int totalContacts(){
+        return this.friendsCount;
+    }
+
     public Contact searchContact(String searchName){
 
         for(int i = 0; i < friendsCount; i++){
@@ -24,6 +28,7 @@ public class ContactsManager {
         }
         return null;
     }
+
 
     
     

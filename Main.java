@@ -13,15 +13,16 @@ public class Main {
 
         System.out.println("*****Welcome to Contacts Manager*****");
 		System.out.println("*. Press 1 to create contact");
-		System.out.println("*. Press 2 to search contacts");
-        System.out.println("*. Press 3 to exit");
+        System.out.println("*. Press 2 to search contacts");
+        System.out.println("*. Press 3 to display contacts");
+        System.out.println("*. Press 0 to exit");
 
         int options = input.nextInt();
 
-        while (options < 1 || options > 3){
+        while (options < 0 || options > 3){
 
-            System.out.println ("that is an invalid select.");
-            System.out.println (" Enter 1, 2, or 3s");
+            System.out.println ("Invalid selectection.");
+            System.out.println (" Enter 1, 2,3 or 0");
             options = input.nextInt();
     }
 
@@ -55,19 +56,32 @@ public class Main {
     public static void createContact(){
                 System.out.println("Enter the name of the contact: ");
                 String name = input.next();
-                Contact Rissam = new Contact();
-                thing.add(Rissam);
-                Rissam.setName(name);
+                Contact contact = new Contact();
+                thing.add(contact);
+                contact.setName(name);
 
 
                 System.out.println("Enter the number of the contact: ");
                 String phoneNumber = input.next();
-                Rissam.setPhoneNumber(phoneNumber);
+                contact.setPhoneNumber(phoneNumber);
 
-                myContactsManager.addContact(Rissam);
+                myContactsManager.addContact(contact);
                 System.out.println("Contact added successfully!!");
+                System.out.println("Total Contacts: " +myContactsManager.totalContacts());
 
                 System.out.println("Type any word to open menu:");
+                String openMenu = input.next();
+
+    }
+
+    public static void displayContacts(){
+            int z;
+        for(int i = 0; i < thing.size(); i++){
+            z = i +1;
+            System.out.println(z + ". " + thing.get(i).getName());
+        }
+
+        System.out.println("Type any word to open menu:");
                 String openMenu = input.next();
 
     }
@@ -83,20 +97,22 @@ public class Main {
             case 1:
 
                 createContact();
-                options = 0;
                 break;
 
             case 2:
 
                 searchContact();
-                options = 0;
                 break;
+
+            case 3:
+                displayContacts();
+                break;    
 
 
         }
     }
 
-    while(options !=3);
+    while(options !=0);
 
             
     }
