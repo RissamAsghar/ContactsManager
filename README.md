@@ -1,4 +1,4 @@
-#Contacts Manager
+# Contacts Manager
 
 A simple java class. It offers following functionalities:
 
